@@ -14,39 +14,58 @@ namespace UD_WebAPI_Course.Controllers
     {
         QuotesDbContext quotesDbContext = new QuotesDbContext();
         // GET: api/Quotes
-        public IEnumerable<Quote> Get()
+        public IHttpActionResult Get()
         {
-            return this.quotesDbContext.Quotes;
+            var quote = this.quotesDbContext.Quotes;
+            return this.Ok(quote);
         }
         
         // GET: api/Quotes/5
-        public Quote Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return this.quotesDbContext.Quotes.Find(id); 
+            var entity = this.quotesDbContext.Quotes.Find(id);
+            if (entity == null)
+            {
+                return this.BadRequest("No record found againt that id...");
+            }
+
+            return this.Ok(entity);
         }
         // POST: api/Quotes
-        public void Post([FromBody]Quote quote)
+        public IHttpActionResult Post([FromBody]Quote quote)
         {
             this.quotesDbContext.Quotes.Add(quote);
             this.quotesDbContext.SaveChanges();
+            return StatusCode(HttpStatusCode.Created);
         }
         
         // PUT: api/Quotes/5
-        public void Put(int id, [FromBody]Quote quote)
+        public IHttpActionResult Put(int id, [FromBody]Quote quote)
         {
             var entity = this.quotesDbContext.Quotes.SingleOrDefault(i => i.Id == id);
+            if (entity == null)
+            {
+                return this.BadRequest("No record found againt that id...");
+            }
             entity.Author = quote.Author;
             entity.Description = quote.Description;
             entity.Title = quote.Title;
             this.quotesDbContext.SaveChanges();
+            return Ok("Record updated sucessfully...");
         }
 
         // DELETE: api/Quotes/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            var quote = this.quotesDbContext.Quotes.Find(id);
-            this.quotesDbContext.Quotes.Remove(quote);
+            var entity = this.quotesDbContext.Quotes.Find(id);
+
+            if (entity == null)
+            {
+                return this.BadRequest("No record found againt that id...");
+            }
+            this.quotesDbContext.Quotes.Remove(entity);
             this.quotesDbContext.SaveChanges();
+            return this.Ok("Quote dleted");
         }
     }
 }
