@@ -1,0 +1,4 @@
+<add name="MovieDBContext" 
+   connectionString="Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=QuotesDb;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\QuotesDb.mdf" 
+   providerName="System.Data.SqlClient" 
+/>
