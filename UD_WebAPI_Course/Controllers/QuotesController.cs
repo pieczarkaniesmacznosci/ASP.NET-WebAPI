@@ -7,38 +7,37 @@ using System.Web.Http;
 
 namespace UD_WebAPI_Course.Controllers
 {
-    using System.Runtime.Remoting.Messaging;
-    using System.Security.Cryptography.X509Certificates;
-
+    using UD_WebAPI_Course.Data;
     using UD_WebAPI_Course.Models;
 
     public class QuotesController : ApiController
     {
-        static List<Quote> _quotes = new List<Quote>()
-                                 {
-                                     new Quote(){Author = "Author1", Description = "Desc1", Id = 1,Title = "Title1"},
-                                     new Quote(){Author = "Author2", Description = "Desc2", Id = 2,Title = "Title2"}
-                                 };
-
-
+        QuotesDbContext quotesDbContext = new QuotesDbContext();
+        // GET: api/Quotes
         public IEnumerable<Quote> Get()
         {
-            return _quotes;
+            return this.quotesDbContext.Quotes;
         }
 
-        public void Post([FromBody]Quote quote)
+        // GET: api/Quotes/5
+        public string Get(int id)
         {
-            _quotes.Add(quote);
-        }
-        [HttpPut]
-        public void Put(int id, [FromBody]Quote quote)
-        {
-            _quotes[id] = quote;
+            return "value";
         }
 
+        // POST: api/Quotes
+        public void Post([FromBody]string value)
+        {
+        }
+
+        // PUT: api/Quotes/5
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE: api/Quotes/5
         public void Delete(int id)
         {
-            _quotes.Remove(_quotes.SingleOrDefault(x => x.Id == id));
         }
     }
 }
