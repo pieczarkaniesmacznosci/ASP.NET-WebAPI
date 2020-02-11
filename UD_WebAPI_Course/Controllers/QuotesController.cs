@@ -18,26 +18,35 @@ namespace UD_WebAPI_Course.Controllers
         {
             return this.quotesDbContext.Quotes;
         }
-
+        
         // GET: api/Quotes/5
-        public string Get(int id)
+        public Quote Get(int id)
         {
-            return "value";
+            return this.quotesDbContext.Quotes.Find(id); 
         }
-
         // POST: api/Quotes
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Quote quote)
         {
+            this.quotesDbContext.Quotes.Add(quote);
+            this.quotesDbContext.SaveChanges();
         }
-
+        
         // PUT: api/Quotes/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Quote quote)
         {
+            var entity = this.quotesDbContext.Quotes.SingleOrDefault(i => i.Id == id);
+            entity.Author = quote.Author;
+            entity.Description = quote.Description;
+            entity.Title = quote.Title;
+            this.quotesDbContext.SaveChanges();
         }
 
         // DELETE: api/Quotes/5
         public void Delete(int id)
         {
+            var quote = this.quotesDbContext.Quotes.Find(id);
+            this.quotesDbContext.Quotes.Remove(quote);
+            this.quotesDbContext.SaveChanges();
         }
     }
 }
