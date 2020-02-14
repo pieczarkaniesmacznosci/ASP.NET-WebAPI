@@ -34,6 +34,11 @@ namespace UD_WebAPI_Course.Controllers
         // POST: api/Quotes
         public IHttpActionResult Post([FromBody]Quote quote)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(ModelState);
+            }
+
             this.quotesDbContext.Quotes.Add(quote);
             this.quotesDbContext.SaveChanges();
             return StatusCode(HttpStatusCode.Created);
@@ -42,6 +47,11 @@ namespace UD_WebAPI_Course.Controllers
         // PUT: api/Quotes/5
         public IHttpActionResult Put(int id, [FromBody]Quote quote)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(ModelState);
+            }
+
             var entity = this.quotesDbContext.Quotes.SingleOrDefault(i => i.Id == id);
             if (entity == null)
             {

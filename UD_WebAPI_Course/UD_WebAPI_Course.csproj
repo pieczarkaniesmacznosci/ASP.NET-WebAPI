@@ -113,6 +113,10 @@
     <Compile Include="Migrations\202002141349440_QuoteCreatedAtAdded2.designer.cs">
       <DependentUpon>202002141349440_QuoteCreatedAtAdded2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002141426313_ValidationAdded.cs" />
+    <Compile Include="Migrations\202002141426313_ValidationAdded.designer.cs">
+      <DependentUpon>202002141426313_ValidationAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Quote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002141349440_QuoteCreatedAtAdded2.resx">
       <DependentUpon>202002141349440_QuoteCreatedAtAdded2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141426313_ValidationAdded.resx">
+      <DependentUpon>202002141426313_ValidationAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
