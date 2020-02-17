@@ -33,6 +33,14 @@ namespace UD_WebAPI_Course.Controllers
 
             return this.Ok(entity);
         }
+
+        [HttpGet]
+        [Route("api/Quotes/Test/{id}")]
+        public int Test(int id)
+        {
+            return id;
+        }
+
         // POST: api/Quotes
         [HttpPost]
         public IHttpActionResult Post([FromBody]Quote quote)

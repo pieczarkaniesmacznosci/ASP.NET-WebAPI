@@ -21,7 +21,7 @@ namespace UD_WebAPI_Course
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+                defaults: new { id = RouteParameter.Optional });// convention-based routing
 
             // deleting XML formatter to give back JSON formatted return irrespectively of "Accept" HEADER value !
             config.Formatters.Remove(config.Formatters.XmlFormatter);
