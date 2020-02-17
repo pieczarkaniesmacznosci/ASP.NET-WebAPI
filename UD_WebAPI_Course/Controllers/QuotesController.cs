@@ -48,6 +48,15 @@ namespace UD_WebAPI_Course.Controllers
         }
 
         [HttpGet]
+        [Route("api/Quotes/PagingQuote/{pageNumber=}/{pageSize=}")]
+
+        public IHttpActionResult PagingQuote(int pageNumber, int pageSize)
+        {
+            var quotes = this.quotesDbContext.Quotes.OrderBy(q => q.Id);// method OrderBy must be called before method Skip!
+            return Ok(quotes.Skip((pageNumber - 1) * pageSize).Take(pageSize));
+        }
+
+        [HttpGet]
         [Route("api/Quotes/Test/{id}")]
         public int Test(int id)
         {
