@@ -14,14 +14,16 @@ namespace UD_WebAPI_Course.Controllers
     {
         QuotesDbContext quotesDbContext = new QuotesDbContext();
         // GET: api/Quotes
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult LoadQuotes()
         {
             var quote = this.quotesDbContext.Quotes;
             return this.Ok(quote);
         }
         
         // GET: api/Quotes/5
-        public IHttpActionResult Get(int id)
+        [HttpGet]
+        public IHttpActionResult LoadQuote(int id)
         {
             var entity = this.quotesDbContext.Quotes.Find(id);
             if (entity == null)
@@ -32,6 +34,7 @@ namespace UD_WebAPI_Course.Controllers
             return this.Ok(entity);
         }
         // POST: api/Quotes
+        [HttpPost]
         public IHttpActionResult Post([FromBody]Quote quote)
         {
             if (!ModelState.IsValid)
@@ -45,6 +48,7 @@ namespace UD_WebAPI_Course.Controllers
         }
         
         // PUT: api/Quotes/5
+        [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]Quote quote)
         {
             if (!ModelState.IsValid)
@@ -65,6 +69,7 @@ namespace UD_WebAPI_Course.Controllers
         }
 
         // DELETE: api/Quotes/5
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var entity = this.quotesDbContext.Quotes.Find(id);
