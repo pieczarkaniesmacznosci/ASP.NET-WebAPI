@@ -15,10 +15,23 @@ namespace UD_WebAPI_Course.Controllers
         QuotesDbContext quotesDbContext = new QuotesDbContext();
         // GET: api/Quotes
         [HttpGet]
-        public IHttpActionResult LoadQuotes()
+        public IHttpActionResult LoadQuotes(string sort)
         {
-            var quote = this.quotesDbContext.Quotes;
-            return this.Ok(quote);
+            IQueryable<Quote> quotes;
+            switch (sort)
+            {
+                case "desc":
+                    quotes = this.quotesDbContext.Quotes.OrderByDescending(q => q.CreatedAt); //http://localhost:55826/api/quotes?sort=desc
+                    break;
+                case "asc":
+                    quotes = this.quotesDbContext.Quotes.OrderBy(q => q.CreatedAt);
+                    break;
+                default:
+                    quotes = this.quotesDbContext.Quotes;
+                    break;
+
+            }
+            return this.Ok(quotes);
         }
         
         // GET: api/Quotes/5
