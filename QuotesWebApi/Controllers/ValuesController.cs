@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace QuotesWebApi.Controllers
 {
-    [Authorize]
+    [Authorize]// this attribute means we cannot access this controller without token autentication
     public class ValuesController : ApiController
     {
         // GET api/values
