@@ -4,12 +4,16 @@
     using System.Net;
     using System.Web.Http;
 
+    using Microsoft.AspNet.Identity;
+
     using QuotesWebApi.Models;
 
+    [Authorize] //Protects API from any external access 
     public class QuotesController : ApiController
     {
         ApplicationDbContext quotesDbContext = new ApplicationDbContext();
         // GET: api/Quotes
+        [AllowAnonymous] // GIves access to any request 
         [HttpGet]
         public IHttpActionResult LoadQuotes(string sort)
         {
@@ -28,6 +32,15 @@
 
             }
             return this.Ok(quotes);
+        }
+
+        [HttpGet]
+        [Route("api/Quotes/MyQuotes")]
+        public IHttpActionResult MyQuotes() // method to show only quotes of a specific user
+        {
+            string userId = User.Identity.GetUserId();
+            var quotes = this.quotesDbContext.Quotes.Where(q=>q.UserId == userId).ToList();
+            return Ok(quotes);
         }
         
         // GET: api/Quotes/5
@@ -71,6 +84,9 @@
         [HttpPost]
         public IHttpActionResult Post([FromBody]Quote quote)
         {
+            string userId = User.Identity.GetUserId(); // gets user identity and includes it in the quotes table
+            quote.UserId = userId;
+
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
@@ -93,8 +109,16 @@
             var entity = this.quotesDbContext.Quotes.SingleOrDefault(i => i.Id == id);
             if (entity == null)
             {
-                return this.BadRequest("No record found againt that id...");
+                return this.BadRequest("No record found against that id...");
             }
+            
+            string userId = User.Identity.GetUserId();
+
+            if (userId != entity.UserId)
+            {
+                return this.BadRequest("You do not have rights to update this record");
+            }
+
             entity.Author = quote.Author;
             entity.Description = quote.Description;
             entity.Title = quote.Title;
@@ -112,6 +136,14 @@
             {
                 return this.BadRequest("No record found againt that id...");
             }
+            
+            string userId = User.Identity.GetUserId();
+
+            if (userId != entity.UserId)
+            {
+                return this.BadRequest("You do not have rights to update this record");
+            }
+
             this.quotesDbContext.Quotes.Remove(entity);
             this.quotesDbContext.SaveChanges();
             return this.Ok("Quote dleted");

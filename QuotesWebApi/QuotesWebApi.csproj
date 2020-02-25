@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202002251517284_QuotesAdded.designer.cs">
       <DependentUpon>202002251517284_QuotesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002252052458_UserIdAdded.cs" />
+    <Compile Include="Migrations\202002252052458_UserIdAdded.designer.cs">
+      <DependentUpon>202002252052458_UserIdAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002251517284_QuotesAdded.resx">
       <DependentUpon>202002251517284_QuotesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252052458_UserIdAdded.resx">
+      <DependentUpon>202002252052458_UserIdAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
