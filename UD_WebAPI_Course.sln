@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UD_WebAPI_Course", "UD_WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuotesWebApi", "QuotesWebApi\QuotesWebApi.csproj", "{2622BE81-9C24-40E7-B7DC-D1FEA2CECAE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressoAPI", "ExpressoAPI\ExpressoAPI.csproj", "{595C989A-9BEE-44C6-89D1-C3140A9C0357}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2622BE81-9C24-40E7-B7DC-D1FEA2CECAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2622BE81-9C24-40E7-B7DC-D1FEA2CECAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2622BE81-9C24-40E7-B7DC-D1FEA2CECAE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595C989A-9BEE-44C6-89D1-C3140A9C0357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595C989A-9BEE-44C6-89D1-C3140A9C0357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595C989A-9BEE-44C6-89D1-C3140A9C0357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595C989A-9BEE-44C6-89D1-C3140A9C0357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
