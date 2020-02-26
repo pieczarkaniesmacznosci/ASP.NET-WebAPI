@@ -8,6 +8,8 @@
 
     using QuotesWebApi.Models;
 
+    using WebApi.OutputCache.V2;
+
     [Authorize] //Protects API from any external access 
     public class QuotesController : ApiController
     {
@@ -15,6 +17,9 @@
         // GET: api/Quotes
         [AllowAnonymous] // GIves access to any request 
         [HttpGet]
+        [CacheOutput(ClientTimeSpan = 60,ServerTimeSpan = 60)] 
+        //Client side caching - the time that client browser cache will store data for. If server is connected request will forward to the server anyway
+        //Server side caching - only one request to the server in the perticular time 
         public IHttpActionResult LoadQuotes(string sort)
         {
             IQueryable<Quote> quotes;
