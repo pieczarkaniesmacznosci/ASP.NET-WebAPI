@@ -7,7 +7,7 @@ namespace ExpressoAPI.Models
 {
     public class SubMenu
     {
-        public int Id { get; set; }
+        public int SubMenuId { get; set; }
 
         public string Name { get; set; }
 
